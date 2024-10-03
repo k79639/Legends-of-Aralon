@@ -1,4 +1,4 @@
-''' This is the first version of the game to kind of test some ideas '''
+''' This is the Main module of the game which will handel the program flow and main game script. '''
 import time
 import sys
 
