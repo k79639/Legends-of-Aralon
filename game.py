@@ -41,7 +41,23 @@ def display_options(typing_effect):
     typing_effect("- Special Ability: Can dodge a monster's attack once and regenerate 65% of health once.\n", 0.05)
 
     typing_effect("Type \033[92m'Valerius'\033[0m to embody strength and resilience,", 0.03)
-    typing_effect("or \033[94m'Sage'\033[0m to wield the power of wisdom and magic.", 0.03)
+    typing_effect("or \033[94m'Eldara'\033[0m to wield the power of wisdom and magic.", 0.03)
 
 display_options(typing_effect)
+
+#Acknowledge player choice and register their choice in a variable for future use
+def select_hero():
+    while True:
+        hero_choice = input("\nYour choice (\033[92mValerius\033[0m/\033[94mEldara\033[0m): ").strip().lower()
+        if hero_choice == "valerius":
+            typing_effect("\nYou have chosen \033[92mValerius, the Guardian Knight\033[0m. Prepare for battle!")
+            return "Valerius"
+        elif hero_choice == "eldara":
+            typing_effect("\nYou have chosen \033[94mEldara, the Mystic Sage\033[0m. May wisdom guide your path!")
+            return "Eldara"
+        else:
+            typing_effect("\n\033[91mInvalid choice. Please type \033[92m'Valerius'\033[0m or \033[94m'Eldara'\033[0m.")
+           
+selected_hero = select_hero()
+
 
