@@ -56,7 +56,7 @@ def select_hero():
             typing_effect("\nYou have chosen \033[94mEldara, the Mystic Sage\033[0m. May wisdom guide your path!")
             return "Eldara"
         else:
-            typing_effect("\n\033[91mInvalid choice. Please type \033[92m'Valerius'\033[0m or \033[94m'Eldara'\033[0m.")
+            typing_effect("\n\033[91mInvalid choice. Please type \033[92m'Valerius'\033[0m or \033[94m'Eldara'\033[0m.", 0.03)
            
 selected_hero = select_hero()
 
