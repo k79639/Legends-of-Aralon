@@ -2,11 +2,14 @@
 import Content
 
 #Welcome the user to the game 
-Content.display_welcome()
+# Content.display_welcome()
 
 #Display the characters and their attribute
-Content.display_options()
+# Content.display_options()
 
 #Prompt user to select a character
-Content.select_character()
+# Content.select_character()
+
+Content.oriana()
+Content.kragnar()
 
