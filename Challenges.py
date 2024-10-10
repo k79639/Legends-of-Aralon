@@ -48,17 +48,19 @@ def firstChallenge():
                             # Apply damage after shield is broken
                             Characters.monsterHealth -= damage  
                             Content.typingEffect(f"\n{Characters.heroName} shatters {Characters.monsterName}'s\033[0m shield and deals {damage} damage!\n")
-                            Content.typingEffect(f"{Characters.monsterName} has {Characters.kragnarTotalShields} shields remaining.\n")
+                            Content.typingEffect(f"{Characters.monsterName}\033[0m has {Characters.kragnarTotalShields} shields remaining.\n")
                             Characters.monsterHealth = max(0, Characters.monsterHealth)  
                             Content.typingEffect(f"{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n")
                             Characters.heroCanRemoveShield = False
+                            # Check if someone won
+                            checkWinner()
                             break
                         
                         # If player decided not to destroy monster's shield
                         elif removeShield == "no":
                             Content.typingEffect(f"\n{Characters.heroName} decides to save their ability for now.\n")
                             Content.typingEffect(f"{Characters.monsterName}'s\033[0m shield absorbs your attack!\n")
-                            Content.typingEffect(f"{Characters.monsterName} has {Characters.kragnarTotalShields} shields remaining.\n")
+                            Content.typingEffect(f"{Characters.monsterName}\033[0m has {Characters.kragnarTotalShields} shields remaining.\n")
                             Characters.kragnarHasShield = False
                             break
 
@@ -69,16 +71,16 @@ def firstChallenge():
                 if not Characters.heroCanRemoveShield and Characters.kragnarHasShield:
                     Content.typingEffect("You have already used your ability to break a shield, so you cannot remove it again.\n")
                     Content.typingEffect(f"{Characters.monsterName}'s\033[0m shield absorbs your attack!\n")
-                    Content.typingEffect(f"{Characters.monsterName} has {Characters.kragnarTotalShields} shields remaining.\n")
+                    Content.typingEffect(f"{Characters.monsterName}\033[0m has {Characters.kragnarTotalShields} shields remaining.\n")
                     Characters.kragnarHasShield = False
 
             else:
                 Characters.monsterHealth -= damage
-                checkWinner()
                 # Ensure that the health does not go into negative
                 Characters.monsterHealth = max(0, Characters.monsterHealth)  
-                Content.typingEffect(f"\nYou rolled a critical hit! {Characters.monsterName} takes {damage} damage.")
+                Content.typingEffect(f"\nYou rolled a critical hit! {Characters.monsterName}\033[0m takes {damage} damage.\n")
                 Content.typingEffect(f"{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n")
+                
         
         # Normal Attack if the dice roll is less than 10
         elif totalRoll < 10:
@@ -86,21 +88,21 @@ def firstChallenge():
         
         # Now it's Kragnar's turn to attack
         monsterAttack()
-        
+
         # Check if someone won
         checkWinner()
 
 '''This function determines the damage dealt by the hero'''
 def diceRoll():
     global totalRoll
-    rollResult = random.randint(0, 0)  # Rolling 2 six-sided dice
+    rollResult = random.randint(8, 11)  # Rolling 2 six-sided dice
     totalRoll = rollResult + Characters.heroStrength
     Content.typingEffect(f"{Characters.heroName}\033[0m rolled a {rollResult} (Modified by your {heroAttributeName} {heroAttribute} is {totalRoll}).\n")
 
 '''This function determines the damage dealt by the monster'''
 def monsterAttack():
-    monsterRoll = random.randint(8, 12)
-    if monsterRoll > totalRoll:
+    monsterRoll = random.randint(12, 15)
+    if monsterRoll > totalRoll and Characters.monsterHealth > 0:
         # Difference in rolls is the damage dealt to the hero
         monsterDamage = monsterRoll - totalRoll  
         Characters.heroHealth -= monsterDamage
@@ -110,11 +112,13 @@ def monsterAttack():
         Content.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m remaining health: {Characters.heroHealth}\n")
         # Give health restore ability to Valerius
         healthRestoreAbility()
+        # Check if someone won
+        checkWinner()
 
 '''This function checks if someone has won'''
 def checkWinner():
     if Characters.monsterHealth <= 0:
-        Content.typingEffect(f"You have defeated {Characters.monsterColor}{Characters.monsterTitle}\033[0m Victory is yours!\n")
+        Content.typingEffect(f"{Characters.oriana}You have defeated {Characters.monsterColor}{Characters.monsterTitle}\033[0m Victory is yours!\n")
     elif Characters.heroHealth <= 0:
         Content.typingEffect(f"{Characters.heroColour}{Characters.heroName}\033[0m has been defeated. Game over.\n")
 

@@ -14,6 +14,7 @@ import Challenges
 Characters.selectCharacter()
 
 #Introduce storyteller and first challenge
+Characters.storyTeller()
 # Content.orianaChallenge1Intro()
 
 #Start the first challenge

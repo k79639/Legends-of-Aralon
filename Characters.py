@@ -30,7 +30,13 @@ def selectCharacter():
             heroHealth = 50
             return "Eldara"
         else:
-            Content.typingEffect("\n\033[91mInvalid choice. Please type \033[92m'Valerius'\033[0m or \033[94m'Eldara'\033[0m.", 0.03)
+            Content.typingEffect("\n\033[91mInvalid choice.\033[92m Please type 'Valerius'\033[0m or \033[94m'Eldara'\033[0m.", 0.03)
+
+'''Storyteller Character'''
+def storyTeller():
+    global oriana
+    oriana = "\033[93mOriana:\033[0m "
+
 
 '''First monster's attributes'''
 def kragnar():
