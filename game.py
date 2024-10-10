@@ -1,15 +1,20 @@
 ''' This is the Main module of the game which will handel the program flow and main game script. '''
 import Content
+import Characters
+import Challenges
+
 
 #Welcome the user to the game 
-# Content.display_welcome()
+# Content.displayWelcome()
 
 #Display the characters and their attribute
-# Content.display_options()
+# Content.displayOptions()
 
 #Prompt user to select a character
-# Content.select_character()
+Characters.selectCharacter()
 
-Content.oriana()
-Content.kragnar()
+#Introduce storyteller and first challenge
+# Content.orianaChallenge1Intro()
 
+#Start the first challenge
+Challenges.firstChallenge()
