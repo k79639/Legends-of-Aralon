@@ -72,21 +72,17 @@ def firstChallenge():
     # Battle loop until one character wins
     while Characters.monsterHealth > 0 and Characters.heroHealth > 0:
         GameScript.typingEffect(input("\nPress Enter/Return to roll dice: "))
-
-        diceRoll()  # Roll the dice to determine the outcome of this round
-
+        # Roll the dice to determine the outcome of this round
+        diceRoll()
         # Critical hit
         if totalRoll >= 10: 
             damage = totalRoll
             Characters.kragnarShieldAbility()
-
         # Normal Attack if the dice roll is less than 10
         elif totalRoll < 10:
             normalAttack()
-
         # Now it's monster's turn to attack
         monsterAttack()
-
         # Check if someone won
         checkWinner()
 

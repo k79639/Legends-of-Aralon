@@ -17,7 +17,7 @@ def selectCharacter():
             return "Valerius"
         elif selectedHero == "eldara":
             GameScript.typingEffect("\nYou have chosen \033[94mEldara, the Mystic Sage\033[0m. May wisdom guide your path!")
-            
+            eldara()
             return "Eldara"
         else:
             GameScript.typingEffect("\n\033[91mInvalid choice.\033[92m Please type 'Valerius'\033[0m or \033[94m'Eldara'\033[0m.", 0.03)
@@ -40,6 +40,7 @@ def valerius():
 
 '''This function gives valerius ability to restore 40% of his health twice'''
 def valeriusHealthRestoreAbility():
+    global heroCanRestoreHealth, heroHealth
     while True:
         if selectedHero == "valerius" and heroCanRestoreHealth > 0 and heroHealth < 25:
             heroCanRestoreHealth = input("\nWould you like to use your health restoration ability now? (yes/no): ").strip().lower()
@@ -59,6 +60,7 @@ def valeriusHealthRestoreAbility():
 
 '''This function gives valerius ability to destroy monster's shield once'''
 def valeriusDestroyShieldAbility():
+    global heroCanRemoveShield, shieldUsed, monsterHealth, kragnarHasShield
     # Prompt to remove the shield but only once
     if heroCanRemoveShield:
         while True:
@@ -114,6 +116,7 @@ def eldara():
 
 '''This function gives Eldara ability to respawn once but with only 65% of total original health.'''
 def eldaraRespawnAbility():
+    global heroCanRespawn, heroHealth
     while True:
         if selectedHero == "eldara" and heroCanRespawn and heroHealth == 0:
             heroCanRespawn = input(f"\nWould you like to use {heroColour}{heroName}'s\033[0m respawn ability and continue the battle (yes/no): ").strip().lower()
@@ -133,6 +136,7 @@ def eldaraRespawnAbility():
 
 '''This function gives Eldara ability to dodge a monster's critical attack twice'''
 def eldaraDodgeAbility():
+    global heroCanDodgeAttack
     while True:
         if heroCanDodgeAttack > 0 and Challenges.monsterDamage >= 5:
             heroCanDodgeAttack = input(f"\nWould you like to use {heroColour}{heroName}\033[0m ability to dodge this attack?: ").strip().lower()
@@ -161,23 +165,30 @@ def kragnar():
     monsterName = "\033[35mKragnar"
     monsterTitle = "Kragnar the Stoneborn!"
     monsterColor = "\033[35m"
-    monsterHealth = 25
+    monsterHealth = 200
     kragnarTotalShields = 3  
     kragnarHasShield = False
 
 '''This function gives kragnar ability to create a shield to protect himself if critically attacked by the hero'''
 def kragnarShieldAbility():
+    global kragnarTotalShields, kragnarHasShield, monsterHealth
     # 50% chance for Kragnar to create a shield if he has shields left
-    if random.randint(0, 1) < 0.5:
+    if random.randint(0, 0) == 0:
         monsterDecidedToUseAbility = True
     else:
         monsterDecidedToUseAbility = False
-    if kragnarTotalShields > 0 and not kragnarHasShield and monsterDecidedToUseAbility:
+    if kragnarTotalShields > 0 and monsterDecidedToUseAbility and not kragnarHasShield:
         kragnarHasShield = True
         kragnarTotalShields -= 1
         GameScript.typingEffect("\n\033[35mKragnar\033[0m summons a shield of stone to protect himself!\n")
         valeriusDestroyShieldAbility()
     elif monsterDecidedToUseAbility == False:
+        monsterHealth -= Challenges.damage
+        # Ensure that the health does not go into negative
+        monsterHealth = max(0, monsterHealth)  
+        GameScript.typingEffect(f"\n{heroColour}{heroName}\033[0m rolled a critical hit! {monsterName}\033[0m takes {Challenges.damage} damage.\n", 0.04)
+        GameScript.typingEffect(f"{monsterName}'s\033[0m remaining health: {monsterHealth}\n", 0.03)
+    else:
         monsterHealth -= Challenges.damage
         # Ensure that the health does not go into negative
         monsterHealth = max(0, monsterHealth)  
