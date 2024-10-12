@@ -78,7 +78,7 @@ def firstChallenge():
         # Critical hit
         if totalRoll >= 10: 
             damage = totalRoll
-            kragnarShieldAbility()
+            Characters.kragnarShieldAbility()
 
         # Normal Attack if the dice roll is less than 10
         elif totalRoll < 10:
