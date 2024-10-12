@@ -50,7 +50,6 @@ def displayOptions():
     typingEffect("or \033[94m'Eldara'\033[0m to wield the power of wisdom and magic.", 0.03)
 
 
-
 '''Oriana the storyteller's dialogues for challenge 1'''
 def orianaChallenge1Intro():
     typingEffect(f"{Characters.oriana}Greetings, hero. I am Oriana, keeper of forgotten tales and chronicler of Aralon.")
