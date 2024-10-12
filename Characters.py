@@ -25,7 +25,7 @@ def selectCharacter():
 '''This function defines the attributes of the first hero Valerius'''
 def valerius():
     global heroName, heroColour, heroHealth, heroIntelligence, heroStrength, heroStamina,\
-    heroCanRemoveShield, heroCanRespawn, heroCanDodgeAttack, heroCanRestoreHealth, shieldUsed
+    heroCanRemoveShield, heroCanRespawn, heroCanDodgeAttack, heroCanRestoreHealth, shieldUsedAlert
     heroName = "Valerius"
     heroColour = "\033[92m"
     heroStamina = +2
@@ -36,7 +36,7 @@ def valerius():
     heroCanRestoreHealth = 2
     heroCanDodgeAttack = False
     heroCanRespawn = False
-    shieldUsed = False
+    shieldUsedAlert = False
 
 '''This function gives valerius ability to restore 40% of his health twice'''
 def valeriusHealthRestoreAbility():
@@ -60,7 +60,7 @@ def valeriusHealthRestoreAbility():
 
 '''This function gives valerius ability to destroy monster's shield once'''
 def valeriusDestroyShieldAbility():
-    global heroCanRemoveShield, shieldUsed, monsterHealth, kragnarHasShield
+    global heroCanRemoveShield, shieldUsedAlert, monsterHealth, kragnarHasShield
     # Prompt to remove the shield but only once
     if heroCanRemoveShield:
         while True:
@@ -83,16 +83,23 @@ def valeriusDestroyShieldAbility():
                 GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
                 kragnarHasShield = False
                 break
-
-            # If monster have a shield but hero cannot remove it and aleart the player that the shield is already used.
-            elif not heroCanRemoveShield and kragnarHasShield and not shieldUsed:
-                GameScript.typingEffect(f"{heroColour}{heroName}\033[0m have already used your ability to break a shield, so you cannot remove it again.\n", 0.03)
-                GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
-                GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
-                kragnarHasShield = False
-                shieldUsed = True
+            
             else:
                 GameScript.typingEffect("\n\033[91mInvalid choice.\033[0m Please type 'Yes' or 'No'.\n", 0.03)
+    # If monster have a shield but hero cannot remove it and aleart the player that the shield is already used.
+    elif not heroCanRemoveShield and kragnarHasShield and not shieldUsedAlert:
+        GameScript.typingEffect(f"{heroColour}{heroName}\033[0m have already used your ability to break a shield, so you cannot destroy it again.\n", 0.03)
+        GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+        GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+        kragnarHasShield = False
+        shieldUsedAlert = True
+
+    # If the game already prompted the player that the desrtroy shield ability is already used
+    elif shieldUsedAlert:
+        GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+        GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+        kragnarHasShield = False
+
     else:
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m does not have the ability to destroy Monster's Shield\n")
         GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
