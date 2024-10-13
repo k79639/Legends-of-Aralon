@@ -82,7 +82,6 @@ def valeriusDestroyShieldAbility():
                 GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
                 GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
                 kragnarHasShield = False
-                heroCanRemoveShield = False
                 break
             
             else:
