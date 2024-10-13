@@ -24,7 +24,7 @@ def monsterAttack():
         global monsterRoll
         monsterRoll = random.randint(2, 12)
     elif Characters.monsterTitle == "Zarok the Deathbringer" and Characters.monsterHealth <= 15 and Characters.monsterHealth > 0:
-        monsterDamage = random.randint(2, 6)
+        monsterDamage = random.randint(4, 8)
     else:
         monsterRoll = 1
 
