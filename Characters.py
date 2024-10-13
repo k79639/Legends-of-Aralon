@@ -42,7 +42,7 @@ def valerius():
 def valeriusHealthRestoreAbility():
     global heroCanRestoreHealth, heroHealth
     while True:
-        if heroCanRestoreHealth > 0 and heroHealth < 25:
+        if heroCanRestoreHealth > 0 and heroHealth < 25 and heroHealth > 0:
             userSelection = input("\nWould you like to use your health restoration ability now? (yes/no): ").strip().lower()
             if userSelection == 'yes':
                 heroHealth = heroHealth + 20

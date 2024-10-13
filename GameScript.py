@@ -39,10 +39,10 @@ def displayOptions():
 
     #Display characters attributes
     typingEffect("\n\033[92mValerius, the Guardian Knight,\033[0m", 0.04)
-    typingEffect("- Stamina: +2\n- Strength: +2\n- wisdom: -3")
+    typingEffect("- Stamina: +2\n- Strength: +2\n- wisdom: -3\n- Health: 50")
     typingEffect("- Special Abilities: Can break a monster's shield once and restore 40% of health twice.", 0.03)
     typingEffect("\n\033[94mEldara, the Mystic Sage:\033[0m", 0.04)
-    typingEffect("- Stamina: -1\n- Strength: -2\n- Intelligence: +3", 0.04)
+    typingEffect("- Stamina: -1\n- Strength: -2\n- Intelligence: +3\n- Health: 50", 0.04)
     typingEffect("- Special Ability: Can dodge a monster's attack once and respawn with 65% of health once.\n", 0.03)
     typingEffect("Type \033[92m'Valerius'\033[0m to embody strength and resilience,", 0.03)
     typingEffect("or \033[94m'Eldara'\033[0m to wield the power of wisdom and magic.", 0.03)
@@ -55,7 +55,7 @@ def orianaChallenge1Intro():
     typingEffect("        A new challenge awaits you, hero. Prepare yourself for what lies ahead.\n", 0.03)
     typingEffect("        The first foe you must confront is known as \033[35mKragnar the Stoneborn\033[0m.", 0.06)
     typingEffect("        A towering beast of immense size and formidable strength.", 0.03)
-    typingEffect("        Beware, hero; he can summon a shield of earth to deflect your critical attacks.", 0.03)
+    typingEffect("        \033[31mBeware,\033[0m hero; he can summon a shield of earth to deflect your critical attacks.", 0.03)
     typingEffect("        Choose your attacks wisely, for strategy will be key in overcoming this challenge.\n", 0.02)
     typingEffect("        \033[1mRemember, I will be here to offer guidance whenever you need it.\033[0m", 0.04)
     typingEffect("        Now, steel your resolve and prepare to face Kragnar the Stoneborn.\n", 0.03)
@@ -146,11 +146,16 @@ def challenge5InitialDialogues():
 
 '''Oriana the storyteller's final dialogues after hero'''
 def orianaFinalDialogues():
-    typingEffect(f"\n{Characters.oriana}You did it, hero! Zarok is defeated, and the kingdom is safe.")
-    typingEffect("        Your bravery has brought light back to Aralon.\n", 0.03)
-    typingEffect("        \033[1mRest now, champion. Your legend will be told for generations.\033[0m")
+    if Characters.heroHealth > 0:
+        typingEffect(f"\n{Characters.oriana}You did it, hero! Zarok is defeated, and the kingdom is safe.")
+        typingEffect("        Your bravery has brought light back to Aralon.\n", 0.03)
+        typingEffect("        \033[1mRest now, champion. Your legend will be told for generations.\033[0m")
+    else:
+        pass
 
 '''A little thank you message for the player'''
 def finalMessage():
-    typingEffect("\n\033[7mThank you for playing Legends of Aralon. Your journey may be over for now, but your legend will live on!\033[7m\n", 0.04)
-    
+    if Characters.heroHealth > 0:
+        typingEffect("\n\033[7mThank you for playing Legends of Aralon. Your journey may be over for now, but your legend will live on!\033[7m\n", 0.04)
+    else:
+        pass

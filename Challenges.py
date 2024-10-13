@@ -8,7 +8,7 @@ import random
 def diceRoll():
     global totalRoll
     # Rolling 2 six-sided dice.
-    rollResult = random.randint(2, 2)  
+    rollResult = random.randint(2, 12)  
     # Calculate the outcome of the dice roll considering the attribute of the hero.
     totalRoll = rollResult + heroAttribute
     # Ensure that total damage does not goes into negative
