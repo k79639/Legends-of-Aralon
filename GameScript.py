@@ -82,10 +82,10 @@ def orianaChallenge2Intro():
 
 '''Initial dialogues before fight for challenge 2'''
 def challenge2InitialDialogues():
-    typingEffect(f"{Characters.monsterName}: \033[0mAh, a brave soul ventures into my domain...")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mAh, a brave soul ventures into my domain...")
     typingEffect("      But do you know what you face, hero?\n", 0.03)
     typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mI've faced worse, and I will overcome you as well!\n")
-    typingEffect(f"{Characters.monsterName}: \033[0mHow amusing! But in these woods, strength matters little.")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mHow amusing! But in these woods, strength matters little.")
     typingEffect(f"      The more you fight, the more you face yourself.", 0.04)
     typingEffect("      Let us see if you can handle the reflection of your own power!\n", 0.03)
 
@@ -101,10 +101,10 @@ def orianaChallenge3Intro():
 
 '''Initial dialogues before fight for challenge 3'''
 def challenge3InitialDialogues():
-    typingEffect(f"{Characters.monsterName}: \033[0mAh... another soul to feast upon. How delightful.")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mAh... another soul to feast upon. How delightful.")
     typingEffect("         You will not survive this, hero. The more you fight, the more I feed.\n", 0.03)
     typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mI've overcome worse than you, Malakar. You won't defeat me!\n")
-    typingEffect(f"{Characters.monsterName}: \033[0mFoolish mortal. ")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mFoolish mortal. ")
     typingEffect("         Your strength will wither as I grow stronger. Let us begin.\n", 0.03)
 
 '''Oriana the storyteller's dialogues for challenge 4'''
@@ -119,28 +119,28 @@ def orianaChallenge4Intro():
 
 '''Initial dialogues before fight for challenge 4'''
 def challenge4InitialDialogues():
-    typingEffect(f"{Characters.monsterName}: \033[0mWho dares disturb my slumber?")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mWho dares disturb my slumber?")
     typingEffect("         Another fool seeking glory? You shall be nothing but ashes!\n", 0.03)
-    typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mI've faced worse than you, {Characters.monsterName}!\033[0m I will not back down!\n")
-    typingEffect(f"{Characters.monsterName}: \033[0mYour bravado is amusing. Prepare to feel the heat of my flames!", 0.03)
+    typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mI've faced worse than you, {Characters.colouredMonsterName}!\033[0m I will not back down!\n")
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mYour bravado is amusing. Prepare to feel the heat of my flames!", 0.03)
 
 '''Oriana the storyteller's dialogues for challenge 5'''
 def orianaChallenge5Intro():
     typingEffect(f"        This is it, hero. The final battle stands before you.\n")
     typingEffect(f"        Deep within the ancient ruins, the source of all darkness awaits: \033[35m{Characters.monsterTitle}\033[0m", 0.04)
-    typingEffect(f"        {Characters.monsterName}\033[0m has the power to drain the life from all living things, leaving nothing but death in his wake.\n")
+    typingEffect(f"        {Characters.colouredMonsterName}\033[0m has the power to drain the life from all living things, leaving nothing but death in his wake.\n")
     typingEffect("        He is unlike any foe you've faced before, for he wields the power of the shadows themselves.", 0.03)
-    typingEffect(f"        \033[31mBe warned:\033[0m {Characters.monsterName}\033[0m will double his power when his health drops below 16.\n")
+    typingEffect(f"        \033[31mBe warned:\033[0m {Characters.colouredMonsterName}\033[0m will double his power when his health drops below 16.\n")
     typingEffect("        This is your final test, hero. Defeat Zarok, and the kingdom of Aralon will be free from the darkness.", 0.03)
     typingEffect("        But fail... and the light will fade forever.\n")
 
 '''Initial dialogues before fight for challenge 5'''
 def challenge5InitialDialogues():
     global gameEnd 
-    typingEffect(f"{Characters.monsterName}: \033[0mSo, you are the one who has been causing me trouble.", 0.04)
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mSo, you are the one who has been causing me trouble.", 0.04)
     typingEffect("       You think you can stop me? You are but a fleeting breath in the winds of time.\n", 0.03)
     typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mI won't let you destroy this kingdom, Zarok!\n")
-    typingEffect(f"{Characters.monsterName}: \033[0mFoolish hero. I am death incarnate. The more you fight, the closer you come to your end.", 0.03)
+    typingEffect(f"{Characters.colouredMonsterName}: \033[0mFoolish hero. I am death incarnate. The more you fight, the closer you come to your end.", 0.03)
     typingEffect("       I will extinguish your light, as I have done with countless others before you.", 0.03)
     gameEnd = True
 
