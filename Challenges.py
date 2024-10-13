@@ -1,4 +1,4 @@
-'''This module is responsible for the mechanics of all the challenges in the.'''
+'''This module is responsible for the mechanics of all the challenges in the Game.'''
 
 import Characters
 import GameScript
