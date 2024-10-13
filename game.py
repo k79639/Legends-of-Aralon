@@ -1,21 +1,27 @@
-''' This is the Main module of the game which will handel the program flow and main game script. '''
+''' This is the Main module of the game which will handel the program flow and main game script.'''
 import GameScript
 import Characters
 import Challenges
 
 
-#Welcome the user to the game 
-# GameScript.displayWelcome()
+# Welcome the user to the game 
+GameScript.displayWelcome()
 
-#Display the characters and their attribute
-# GameScript.displayOptions()
+# Display the characters and their attribute
+GameScript.displayOptions()
 
-#Prompt user to select a character
+# Prompt user to select a character
 Characters.selectCharacter()
 
-#Introduce storyteller and first challenge
+# Introduce storyteller and first challenge
 Characters.storyTeller()
-# GameScript.orianaChallenge1Intro()
+GameScript.orianaChallenge1Intro()
 
-#Start the first challenge
-Challenges.firstChallenge()
+# Start the battle
+Challenges.Battlefield()
+
+# Oriana final dialogues when hero wins
+GameScript.orianaFinalDialogues()
+
+# A little thank you message for the player
+GameScript.finalMessage()

@@ -8,16 +8,24 @@ import random
 def diceRoll():
     global totalRoll
     # Rolling 2 six-sided dice.
-    rollResult = random.randint(13, 14)  
+    rollResult = random.randint(2, 12)  
     # Calculate the outcome of the dice roll considering the attribute of the hero.
-    totalRoll = rollResult + Characters.heroStrength
-    GameScript.typingEffect(f"{Characters.heroColour}{Characters.heroName}\033[0m rolled a {rollResult} (Modified by your {heroAttributeName} {heroAttribute} is {totalRoll}).", 0.03)
+    totalRoll = rollResult + heroAttribute
+    GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m rolled {rollResult} (Modified by your {heroAttributeName} {heroAttribute} is {totalRoll}).", 0.03)
 
-
-'''This function determines the damage dealt by the monster'''
+'''This function determines the damage dealt by the monster and Zarok'''
 def monsterAttack():
     global monsterDamage
-    monsterRoll = random.randint(10, 12)
+
+    # Function to determine the damage given by other monsters vs Zarok
+    if GameScript.challengeNumber<=4:
+        global monsterRoll
+        monsterRoll = random.randint(2, 12)
+    elif Characters.monsterTitle == "Zarok the Deathbringer" and Characters.monsterHealth <= 15 and Characters.monsterHealth > 0:
+        monsterDamage = random.randint(2, 6)
+    else:
+        monsterRoll = 1
+
     # Checks if monster rolled more than the hero and monster is alive or not
     if monsterRoll > totalRoll and Characters.monsterHealth > 0:
         # Difference in rolls is the damage dealt to the hero
@@ -32,14 +40,32 @@ def monsterAttack():
         Characters.valeriusHealthRestoreAbility()
         Characters.eldaraRespawnAbility()
 
+    # If Zarok's health drops below 16 he uses his ability
+    if Characters.monsterTitle == "Zarok the Deathbringer" and Characters.monsterHealth <= 15 and Characters.monsterHealth > 0:
+        Characters.zarokDoubleDamageAbility()
+    else:
+        pass
 
-'''This function checks if someone has won'''
+'''This function checks if someone has won and display the messages accordingly'''
 def checkWinner():
-    if Characters.monsterHealth <= 0:
+
+    # Oriana message whenever hero won
+    if Characters.monsterHealth <= 0 and not GameScript.gameEnd:
         GameScript.typingEffect(f"{Characters.oriana}You have defeated {Characters.monsterColor}{Characters.monsterTitle}\033[0m Victory is yours!\n")
+        GameScript.challengeNumber += 1
+        Battlefield()
+
+    # Ending message when hero finally defeate every monster
+    elif Characters.monsterHealth <= 0 and GameScript.gameEnd: 
+        GameScript.typingEffect(f"{Characters.monsterName}: \033[0mImpossible... How could I be defeated by a mere mortal?")
+        GameScript.typingEffect("       This cannot be... but I feel my power slipping away...\n")
+        GameScript.typingEffect("       I have been vanquished, hero. The darkness recedes... and I will never return.")
+        GameScript.typingEffect("       Enjoy your victory... for even in my absence, shadows will always lurk in the hearts of men.\n")
+        GameScript.typingEffect("       But as for me... my reign of terror is over.")
+
+    # Message when monster won 
     elif Characters.heroHealth <= 0:
         GameScript.typingEffect(f"{Characters.heroColour}{Characters.heroName}\033[0m has been defeated. Game over.\n")
-
 
 '''This function runs when the result of the dice is less than 10 / when critical damage is not delt'''
 def normalAttack():
@@ -51,38 +77,118 @@ def normalAttack():
     GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m hit {Characters.monsterColor}{Characters.monsterName}\033[0m for {damage} damage.", 0.03)
     GameScript.typingEffect(f"\n{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
 
+'''This function runs when the result of the dice more than 10'''
+def criticalAttack():
+    if Characters.monsterHealth> 0 :
+        Characters.monsterHealth -= damage
+        # Ensure that the health does not go into negative
+        Characters.monsterHealth = max(0, Characters.monsterHealth)  
+        GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m rolled a critical hit! {Characters.monsterName}\033[0m takes {damage} damage.\n", 0.04)
+        GameScript.typingEffect(f"{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
 
-'''This function handles the first challenge'''
-def firstChallenge():
-    global totalRoll, heroAttribute, heroAttributeName, damage
+'''This function handles all the challenges and loop the battle until someone won'''
+def Battlefield():
+    # Challenge 1
+    if GameScript.challengeNumber == 1:
+        global totalRoll, heroAttribute, heroAttributeName, damage
 
-    # Attribute used for this challenge
-    heroAttribute = Characters.heroStrength
-    heroAttributeName = "Strength"
+        # Attribute used for this challenge
+        heroAttribute = Characters.heroStrength
+        heroAttributeName = "Strength"
+
+        # Wakes up the monster for the round
+        Characters.kragnar()
+        # Display initial dialogues
+        GameScript.challenge1InitialDialogues()
     
-    # Wakes up the monster for the round
-    Characters.kragnar()
+    # Challenge 2
+    elif GameScript.challengeNumber == 2:
 
-    # Display initial dialogues
-    GameScript.typingEffect("\033[35mKragnar: \033[0mSo, a hero dares to challenge me?", 0.04)
-    GameScript.typingEffect("         You must be brave or foolish to face the Stoneborn.\n", 0.03)
-    GameScript.typingEffect(f"{Characters.heroColour}{Characters.heroName}: \033[0mYou may be strong, but every stone can be shattered with enough will!")
-    GameScript.typingEffect("\n\033[35mKragnar: \033[0mEnough talk! Prepare to meet your end, hero!\n")
+        # Attribute used for this challenge
+        heroAttribute = Characters.heroIntelligence
+        heroAttributeName = "Intelligence"
+
+        # Wakes up the monster for the round
+        Characters.azra()
+        # Display initial dialogues
+        GameScript.orianaChallenge2Intro()
+        GameScript.challenge2InitialDialogues()
+
+    # Challenge 3
+    elif GameScript.challengeNumber == 3:
+
+        # Attribute used for this challenge
+        heroAttribute = Characters.heroStamina
+        heroAttributeName = "Stamina"
+
+        # Wakes up the monster for the round
+        Characters.malakar()
+        # Display initial dialogues
+        GameScript.orianaChallenge3Intro()
+        GameScript.challenge3InitialDialogues()
+
+    # Challenge 4
+    elif GameScript.challengeNumber == 4:
+
+        # Attribute used for this challenge
+        heroAttribute = Characters.heroStrength
+        heroAttributeName = "Strength"
+
+        # Wakes up the monster for the round
+        Characters.Ignarok()
+        # Display initial dialogues
+        GameScript.orianaChallenge4Intro()
+        GameScript.challenge4InitialDialogues()
+
+    # Challenge 5
+    elif GameScript.challengeNumber == 5:
+
+        # Attribute used for this challenge
+        heroAttribute = Characters.heroStamina
+        heroAttributeName = "Stamina"
+
+        # Wakes up the monster for the round
+        Characters.zarok()
+        # Display initial dialogues
+        GameScript.orianaChallenge5Intro()
+        GameScript.challenge5InitialDialogues()
 
     # Battle loop until one character wins
     while Characters.monsterHealth > 0 and Characters.heroHealth > 0:
-        GameScript.typingEffect(input("\nPress Enter/Return to roll dice: "))
+
+        input("\n\033[4mPress Enter/Return to roll dices:\033[0m ")
+
         # Roll the dice to determine the outcome of this round
         diceRoll()
-        # Critical hit
+        
+        # Determine what happens when Critical hit by hero
         if totalRoll >= 10: 
             damage = totalRoll
-            Characters.kragnarShieldAbility()
+            if GameScript.challengeNumber == 1:
+                Characters.kragnarShieldAbility()
+            elif GameScript.challengeNumber == 2:
+                Characters.azraAttackReverseAbility()
+            elif GameScript.challengeNumber == 3:
+                Characters.malakarAbsorbAttackAbility()
+            elif GameScript.challengeNumber == 4:
+                normalAttack()
+            elif GameScript.challengeNumber == 5:
+                normalAttack()
+
         # Normal Attack if the dice roll is less than 10
         elif totalRoll < 10:
             normalAttack()
+        else:
+            pass
+
+        if GameScript.challengeNumber == 4 and Characters.monsterHealth <= 0:
+            Characters.ignarokExplosionAbility()
+        else:
+            pass
+
         # Now it's monster's turn to attack
         monsterAttack()
+
         # Check if someone won
         checkWinner()
 
