@@ -27,7 +27,10 @@ def displayWelcome():
     typingEffect("\nThe prophecy foretold of their combined strength, yet destiny demands a different path.", 0.03)
     typingEffect("One hero must venture forth to confront the ancient evils", 0.04)
     typingEffect("while the other stands guard, protecting the heart of Aralon from the \033[091mencroaching darkness.\033[0m",0.03)
-    typingEffect("Which path will you choose, hero?")
+
+    #Display gameplay rule, win-loss criteria and game quest
+    typingEffect("\nAs the hero of Aralon, your quest is to confront three ancient monsters,\neach testing a different attribute: strength, wisdom, and stamina.\nThe fate of your journey is decided by the roll of two six-sided dice (range: 2-12).\nEach challenge will increase or decrease your attributes based on the roll and your choices.\nBut beware—each failed challenge weakens your health.\n\033[1mVictory is yours\033[0m if you defeat all three foes, but should your health run out, darkness will prevail, and the kingdom will be lost.", 0.03)
+    typingEffect("\nWhich path will you choose, hero?")
 
 '''Prompt for hero selection and with abilities and attributes displayed of each character'''
 def displayOptions():
