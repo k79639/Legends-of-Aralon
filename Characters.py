@@ -207,8 +207,8 @@ def azra():
 '''This function gives azra ability to reverse the hero's attack to protect himself if critically attacked by the hero'''
 def azraAttackReverseAbility():
     global monsterHealth, usedAbility, heroHealth
-    # 50% chance for azra to his attack reverse ability
-    if random.randint(0, 1) > 0.5:
+    # chances for azra to his attack reverse ability 
+    if random.randint(0, 1) > 0.5 or monsterHealth < 15:
         monsterDecidedToUseAbility = True
     else:
         monsterDecidedToUseAbility = False
