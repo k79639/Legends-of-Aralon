@@ -69,18 +69,18 @@ def valeriusDestroyShieldAbility():
                 kragnarHasShield = False
                 # Apply damage after shield is broken
                 monsterHealth -= Challenges.damage
-                GameScript.typingEffect(f"\n{heroColour}{heroName}\033[0m shatters {monsterName}'s\033[0m shield and deals {Challenges.damage} damage!\n", 0.03)
-                GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+                GameScript.typingEffect(f"\n{heroColour}{heroName}\033[0m shatters {colouredMonsterName}'s\033[0m shield and deals {Challenges.damage} damage!\n", 0.03)
+                GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
                 monsterHealth = max(0, monsterHealth)  
-                GameScript.typingEffect(f"{monsterName}'s\033[0m remaining health: {monsterHealth}\n", 0.03)
+                GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m remaining health: {monsterHealth}\n", 0.03)
                 heroCanRemoveShield = False
                 break
             
             # If player decided not to destroy monster's shield
             elif userSelection == "no":
                 GameScript.typingEffect(f"\n{heroName} decides to save their ability for now.\n", 0.03)
-                GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
-                GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+                GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+                GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
                 kragnarHasShield = False
                 heroCanRemoveShield = False
                 break
@@ -91,22 +91,22 @@ def valeriusDestroyShieldAbility():
     # If monster have a shield but hero cannot remove it and aleart the player that the shield is already used.
     elif not heroCanRemoveShield and kragnarHasShield and not shieldUsedAlert and heroName == 'Valerius':
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m have already used his ability to break a shield, so he cannot destroy it again.\n", 0.03)
-        GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
-        GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
         kragnarHasShield = False
         shieldUsedAlert = True
 
     # If the game already prompted the player that the desrtroy shield ability is already used
     elif shieldUsedAlert and heroName == 'Valerius':
-        GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
-        GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
         kragnarHasShield = False
     elif monsterHealth <= 0:
         pass
     else:
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m does not have the ability to destroy Monster's Shield\n")
-        GameScript.typingEffect(f"{monsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
-        GameScript.typingEffect(f"{monsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}'s\033[0m shield absorbs your attack!\n", 0.03)
+        GameScript.typingEffect(f"{colouredMonsterName}\033[0m has {kragnarTotalShields} shields remaining.\n", 0.03)
         kragnarHasShield = False
 
 '''This function defines the attributes of the second hero eldara'''
@@ -172,8 +172,8 @@ def storyTeller():
 
 '''This function defines the First monster's attributes'''
 def kragnar():
-    global monsterHealth, kragnarHasShield, kragnarTotalShields, monsterColor, monsterName, monsterTitle
-    monsterName = "\033[35mKragnar"
+    global monsterHealth, kragnarHasShield, kragnarTotalShields, monsterColor, colouredMonsterName, monsterTitle
+    colouredMonsterName = "\033[35mKragnar"
     monsterTitle = "Kragnar the Stoneborn!"
     monsterColor = "\033[35m"
     monsterHealth = 25
@@ -198,24 +198,24 @@ def kragnarShieldAbility():
 
 '''This function defines the Second monster's attributes'''
 def azra():
-    global monsterHealth, monsterColor, monsterName, monsterTitle, usedAbility
-    monsterName = "\033[35mAzra"
+    global monsterHealth, monsterColor, colouredMonsterName, monsterTitle, usedAbility
+    colouredMonsterName = "\033[35mAzra"
     monsterTitle = "Azra the Mirror Fiend"
     monsterColor = "\033[35m"
     monsterHealth = 25
     usedAbility = False
 
-'''This function gives azar ability to reverse the hero's attack to protect himself if critically attacked by the hero'''
+'''This function gives azra ability to reverse the hero's attack to protect himself if critically attacked by the hero'''
 def azraAttackReverseAbility():
     global monsterHealth, usedAbility, heroHealth
-    # 50% chance for azar to his attack reverse ability
+    # 50% chance for azra to his attack reverse ability
     if random.randint(0, 1) > 0.5:
         monsterDecidedToUseAbility = True
     else:
         monsterDecidedToUseAbility = False
     if not usedAbility and monsterDecidedToUseAbility:
-        GameScript.typingEffect(f"\n{monsterName}:\033[0m Attack me? You only hurt yourself!\n")
-        GameScript.typingEffect(f"{monsterName}\033[0m used his attack reversal ability\n")
+        GameScript.typingEffect(f"\n{colouredMonsterName}:\033[0m Attack me? You only hurt yourself!\n")
+        GameScript.typingEffect(f"{colouredMonsterName}\033[0m used his attack reversal ability\n")
         GameScript.typingEffect(f"Your own strength betrays you! You take {Challenges.damage} damage!\n")
         heroHealth -= Challenges.damage
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
@@ -225,8 +225,8 @@ def azraAttackReverseAbility():
 
 '''This function defines the Third monster's attributes'''
 def malakar():
-    global monsterHealth, monsterColor, monsterName, monsterTitle, abilityLeft
-    monsterName = "\033[35mMalakar"
+    global monsterHealth, monsterColor, colouredMonsterName, monsterTitle, abilityLeft
+    colouredMonsterName = "\033[35mMalakar"
     monsterTitle = "Malakar the Life Leech"
     monsterColor = "\033[35m"
     monsterHealth = 30
@@ -241,7 +241,7 @@ def malakarAbsorbAttackAbility():
     else:
         monsterDecidedToUseAbility = False
     if abilityLeft > 0 and monsterDecidedToUseAbility:
-        GameScript.typingEffect(f"\n{monsterName}\033[0m used his attack Absorb ability\n")
+        GameScript.typingEffect(f"\n{colouredMonsterName}\033[0m used his attack Absorb ability\n")
         increasedHealthBy = random.randint(2, 6)
         monsterHealth += increasedHealthBy
         GameScript.typingEffect(f"\033[35mMalakar\033[0m absorbs your critical strike, increasing his health by {increasedHealthBy}!\n")
@@ -252,8 +252,8 @@ def malakarAbsorbAttackAbility():
 
 '''This function defines the Fourth monster's attributes'''
 def Ignarok():
-    global monsterHealth, monsterColor, monsterName, monsterTitle, abilityLeft
-    monsterName = "\033[35mIgnarok"
+    global monsterHealth, monsterColor, colouredMonsterName, monsterTitle, abilityLeft
+    colouredMonsterName = "\033[35mIgnarok"
     monsterTitle = "Ignarok the Blazing Drake"
     monsterColor = "\033[35m"
     monsterHealth = 30
@@ -266,7 +266,7 @@ def ignarokExplosionAbility():
     if GameScript.challengeNumber == 4 and monsterHealth <= 0:
         explosionDamage = random.randint(5, 10)
         heroHealth -= explosionDamage
-        GameScript.typingEffect(f"As {monsterName}\033[0m falls, it erupts in a massive explosion of fire!\n")
+        GameScript.typingEffect(f"As {colouredMonsterName}\033[0m falls, it erupts in a massive explosion of fire!\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m take {explosionDamage} damage.\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
 
@@ -275,8 +275,8 @@ def ignarokExplosionAbility():
 
 '''This function defines the Fifth monster's attributes'''
 def zarok():
-    global monsterHealth, monsterColor, monsterName, monsterTitle
-    monsterName = "\033[35mZarok"
+    global monsterHealth, monsterColor, colouredMonsterName, monsterTitle
+    colouredMonsterName = "\033[35mZarok"
     monsterTitle = "Zarok the Deathbringer"
     monsterColor = "\033[35m"
     monsterHealth = 35
@@ -285,10 +285,10 @@ def zarok():
 def zarokDoubleDamageAbility():
     global monsterColor, monsterHealth, heroHealth
     Challenges.monsterDamage = Challenges.monsterDamage * 2
-    GameScript.typingEffect(f"{monsterName}\033[0m channels the power of darkness and strikes with double force!", 0.03)
+    GameScript.typingEffect(f"{colouredMonsterName}\033[0m channels the power of darkness and strikes with double force!", 0.03)
     heroHealth -= Challenges.monsterDamage
     # Ensure hero's health does not go negative
     heroHealth = max(0, heroHealth)  
-    GameScript.typingEffect(f"\n{monsterName}\033[0m deals {Challenges.monsterDamage} damage to {heroColour}{heroName}!\n", 0.03)
+    GameScript.typingEffect(f"\n{colouredMonsterName}\033[0m deals {Challenges.monsterDamage} damage to {heroColour}{heroName}!\n", 0.03)
     GameScript.typingEffect(f"{heroColour}{heroName}'s\033[0m remaining health: {heroHealth}\n", 0.03)
 

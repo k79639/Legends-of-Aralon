@@ -35,7 +35,7 @@ def monsterAttack():
         Characters.heroHealth -= monsterDamage
         # Ensure hero's health does not go negative
         Characters.heroHealth = max(0, Characters.heroHealth)  
-        GameScript.typingEffect(f"{Characters.monsterName}\033[0m strikes back and deals {monsterDamage} damage!", 0.04)
+        GameScript.typingEffect(f"{Characters.colouredMonsterName}\033[0m strikes back and deals {monsterDamage} damage!", 0.04)
         Characters.eldaraDodgeAbility()
         GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m remaining health: {Characters.heroHealth}\n", 0.03)
         # Give health restore ability to Valerius
@@ -59,7 +59,7 @@ def checkWinner():
 
     # Ending message when hero finally defeate every monster
     elif Characters.monsterHealth <= 0 and GameScript.gameEnd: 
-        GameScript.typingEffect(f"{Characters.monsterName}: \033[0mImpossible... How could I be defeated by a mere mortal?")
+        GameScript.typingEffect(f"{Characters.colouredMonsterName}: \033[0mImpossible... How could I be defeated by a mere mortal?")
         GameScript.typingEffect("       This cannot be... but I feel my power slipping away...\n")
         GameScript.typingEffect("       I have been vanquished, hero. The darkness recedes... and I will never return.")
         GameScript.typingEffect("       Enjoy your victory... for even in my absence, shadows will always lurk in the hearts of men.\n")
@@ -78,8 +78,8 @@ def normalAttack():
     Characters.monsterHealth -= damage
     # Ensure health does not go negative
     Characters.monsterHealth = max(0, Characters.monsterHealth)  
-    GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m hit {Characters.monsterColor}{Characters.monsterName}\033[0m for {damage} damage.", 0.03)
-    GameScript.typingEffect(f"\n{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
+    GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m hit {Characters.monsterColor}{Characters.colouredMonsterName}\033[0m for {damage} damage.", 0.03)
+    GameScript.typingEffect(f"\n{Characters.colouredMonsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
 
 '''This function runs when the result of the dice more than 10'''
 def criticalAttack():
@@ -87,8 +87,8 @@ def criticalAttack():
         Characters.monsterHealth -= damage
         # Ensure that the health does not go into negative
         Characters.monsterHealth = max(0, Characters.monsterHealth)  
-        GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m rolled a critical hit! {Characters.monsterName}\033[0m takes {damage} damage.\n", 0.04)
-        GameScript.typingEffect(f"{Characters.monsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
+        GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m rolled a critical hit! {Characters.colouredMonsterName}\033[0m takes {damage} damage.\n", 0.04)
+        GameScript.typingEffect(f"{Characters.colouredMonsterName}'s\033[0m remaining health: {Characters.monsterHealth}\n", 0.03)
 
 '''This function handles all the challenges and loop the battle until someone won'''
 def Battlefield():
