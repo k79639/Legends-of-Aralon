@@ -50,7 +50,7 @@ def displayOptions():
 '''Oriana the storyteller's dialogues for challenge 1'''
 def orianaChallenge1Intro():
     global challengeNumber, gameEnd
-    typingEffect(f"{Characters.oriana}Greetings, hero. I am Oriana, keeper of forgotten tales and chronicler of Aralon.")
+    typingEffect(f"\n{Characters.oriana}Greetings, hero. I am Oriana, keeper of forgotten tales and chronicler of Aralon.")
     typingEffect("        I am here to guide you on your journey and share the wisdom of the ancients.", 0.02)
     typingEffect("        A new challenge awaits you, hero. Prepare yourself for what lies ahead.\n", 0.03)
     typingEffect("        The first foe you must confront is known as \033[35mKragnar the Stoneborn\033[0m.", 0.06)
