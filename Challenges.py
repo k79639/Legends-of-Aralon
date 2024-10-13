@@ -8,9 +8,11 @@ import random
 def diceRoll():
     global totalRoll
     # Rolling 2 six-sided dice.
-    rollResult = random.randint(2, 12)  
+    rollResult = random.randint(2, 2)  
     # Calculate the outcome of the dice roll considering the attribute of the hero.
     totalRoll = rollResult + heroAttribute
+    # Ensure that total damage does not goes into negative
+    totalRoll = max(0, totalRoll)
     GameScript.typingEffect(f"\n{Characters.heroColour}{Characters.heroName}\033[0m rolled {rollResult} (Modified by your {heroAttributeName} {heroAttribute} is {totalRoll}).", 0.03)
 
 '''This function determines the damage dealt by the monster and Zarok'''
@@ -70,7 +72,9 @@ def checkWinner():
 '''This function runs when the result of the dice is less than 10 / when critical damage is not delt'''
 def normalAttack():
     global damage
-    damage = totalRoll  
+    damage = totalRoll 
+    # Ensure that total damage does not goes into negative
+    damage = max(0, damage) 
     Characters.monsterHealth -= damage
     # Ensure health does not go negative
     Characters.monsterHealth = max(0, Characters.monsterHealth)  
@@ -162,7 +166,7 @@ def Battlefield():
         diceRoll()
         
         # Determine what happens when Critical hit by hero
-        if totalRoll >= 10: 
+        if totalRoll >= 8: 
             damage = totalRoll
             if GameScript.challengeNumber == 1:
                 Characters.kragnarShieldAbility()
@@ -175,8 +179,8 @@ def Battlefield():
             elif GameScript.challengeNumber == 5:
                 normalAttack()
 
-        # Normal Attack if the dice roll is less than 10
-        elif totalRoll < 10:
+        # Normal Attack if the dice roll is less than 8
+        elif totalRoll <= 7:
             normalAttack()
         else:
             pass
