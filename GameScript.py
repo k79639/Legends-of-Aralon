@@ -50,15 +50,15 @@ def displayOptions():
 '''Oriana the storyteller's dialogues for challenge 1'''
 def orianaChallenge1Intro():
     global challengeNumber, gameEnd
-    # typingEffect(f"{Characters.oriana}Greetings, hero. I am Oriana, keeper of forgotten tales and chronicler of Aralon.")
-    # typingEffect("        I am here to guide you on your journey and share the wisdom of the ancients.", 0.02)
-    # typingEffect("        A new challenge awaits you, hero. Prepare yourself for what lies ahead.\n", 0.03)
-    # typingEffect("        The first foe you must confront is known as \033[35mKragnar the Stoneborn\033[0m.", 0.06)
-    # typingEffect("        A towering beast of immense size and formidable strength.", 0.03)
-    # typingEffect("        Beware, hero; he can summon a shield of earth to deflect your critical attacks.", 0.03)
-    # typingEffect("        Choose your attacks wisely, for strategy will be key in overcoming this challenge.\n", 0.02)
-    # typingEffect("        \033[1mRemember, I will be here to offer guidance whenever you need it.\033[0m", 0.04)
-    # typingEffect("        Now, steel your resolve and prepare to face Kragnar the Stoneborn.\n", 0.03)
+    typingEffect(f"{Characters.oriana}Greetings, hero. I am Oriana, keeper of forgotten tales and chronicler of Aralon.")
+    typingEffect("        I am here to guide you on your journey and share the wisdom of the ancients.", 0.02)
+    typingEffect("        A new challenge awaits you, hero. Prepare yourself for what lies ahead.\n", 0.03)
+    typingEffect("        The first foe you must confront is known as \033[35mKragnar the Stoneborn\033[0m.", 0.06)
+    typingEffect("        A towering beast of immense size and formidable strength.", 0.03)
+    typingEffect("        Beware, hero; he can summon a shield of earth to deflect your critical attacks.", 0.03)
+    typingEffect("        Choose your attacks wisely, for strategy will be key in overcoming this challenge.\n", 0.02)
+    typingEffect("        \033[1mRemember, I will be here to offer guidance whenever you need it.\033[0m", 0.04)
+    typingEffect("        Now, steel your resolve and prepare to face Kragnar the Stoneborn.\n", 0.03)
     challengeNumber = 1
     gameEnd = False
 

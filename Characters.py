@@ -287,6 +287,8 @@ def zarokDoubleDamageAbility():
     Challenges.monsterDamage = Challenges.monsterDamage * 2
     GameScript.typingEffect(f"{monsterName}\033[0m channels the power of darkness and strikes with double force!", 0.03)
     heroHealth -= Challenges.monsterDamage
+    # Ensure hero's health does not go negative
+    heroHealth = max(0, heroHealth)  
     GameScript.typingEffect(f"\n{monsterName}\033[0m deals {Challenges.monsterDamage} damage to {heroColour}{heroName}!\n", 0.03)
     GameScript.typingEffect(f"{heroColour}{heroName}'s\033[0m remaining health: {heroHealth}\n", 0.03)
 
