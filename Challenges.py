@@ -53,6 +53,7 @@ def checkWinner():
 
     # Oriana message whenever hero won
     if Characters.monsterHealth <= 0 and not GameScript.gameEnd:
+        Characters.eldaraRespawnAbility()
         GameScript.typingEffect(f"{Characters.oriana}You have defeated {Characters.monsterColor}{Characters.monsterTitle}\033[0m Victory is yours!\n")
         GameScript.challengeNumber += 1
         Battlefield()
@@ -67,6 +68,7 @@ def checkWinner():
 
     # Message when monster won 
     elif Characters.heroHealth <= 0:
+        Characters.eldaraRespawnAbility()
         GameScript.typingEffect(f"{Characters.heroColour}{Characters.heroName}\033[0m has been defeated. Game over.\n")
 
 '''This function runs when the result of the dice is less than 10 / when critical damage is not delt'''

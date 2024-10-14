@@ -217,6 +217,7 @@ def azraAttackReverseAbility():
         GameScript.typingEffect(f"{colouredMonsterName}\033[0m used his attack reversal ability\n")
         GameScript.typingEffect(f"Your own strength betrays you! You take {Challenges.damage} damage!\n")
         heroHealth -= Challenges.damage
+        heroHealth = max(0, heroHealth)
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
         usedAbility = True
     else:
@@ -265,6 +266,7 @@ def ignarokExplosionAbility():
     if GameScript.challengeNumber == 4 and monsterHealth <= 0:
         explosionDamage = random.randint(5, 10)
         heroHealth -= explosionDamage
+        heroHealth = max(0, heroHealth)
         GameScript.typingEffect(f"As {colouredMonsterName}\033[0m falls, it erupts in a massive explosion of fire!\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m take {explosionDamage} damage.\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
