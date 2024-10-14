@@ -165,8 +165,8 @@ def Battlefield():
         # Roll the dice to determine the outcome of this round
         diceRoll()
         
-        # Determine what happens when Critical hit by hero
-        if totalRoll >= 8: 
+        # Determine what happens when Critical hit by hero and give azar ability to attack when his health drops below 16
+        if totalRoll >= 8 or Characters.monsterTitle == "Azra the Mirror Fiend": 
             damage = totalRoll
             if GameScript.challengeNumber == 1:
                 Characters.kragnarShieldAbility()
