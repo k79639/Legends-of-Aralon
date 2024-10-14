@@ -219,6 +219,8 @@ def azraAttackReverseAbility():
         heroHealth -= Challenges.damage
         heroHealth = max(0, heroHealth)
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
+        valeriusHealthRestoreAbility()
+        eldaraRespawnAbility()
         usedAbility = True
     else:
         Challenges.criticalAttack()
@@ -270,6 +272,8 @@ def ignarokExplosionAbility():
         GameScript.typingEffect(f"As {colouredMonsterName}\033[0m falls, it erupts in a massive explosion of fire!\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m take {explosionDamage} damage.\n")
         GameScript.typingEffect(f"{heroColour}{heroName}\033[0m remaining health: {heroHealth}\n")
+        valeriusHealthRestoreAbility()
+        eldaraRespawnAbility()
 
     else:
         pass
@@ -292,4 +296,6 @@ def zarokDoubleDamageAbility():
     heroHealth = max(0, heroHealth)  
     GameScript.typingEffect(f"\n{colouredMonsterName}\033[0m deals {Challenges.monsterDamage} damage to {heroColour}{heroName}!\n", 0.03)
     GameScript.typingEffect(f"{heroColour}{heroName}'s\033[0m remaining health: {heroHealth}\n", 0.03)
+    valeriusHealthRestoreAbility()
+    eldaraRespawnAbility()
 

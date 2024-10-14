@@ -3,6 +3,7 @@ import GameScript
 import Characters
 import Challenges
 
+#https://www.mindomo.com/mindmap/074e6b9853d74a7e8086832c0c1d0aa5
 
 # Welcome the user to the game 
 GameScript.displayWelcome()
