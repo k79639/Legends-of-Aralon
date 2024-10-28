@@ -17,7 +17,7 @@ def displayWelcome():
     print("\n" + "\033[7m-" * 8 +" Legends of Aralon "+"-" * 8 +"\033[0m\n")
 
     #Prints the background story
-    typingEffect("The air crackles with anticipation...", 0.07)
+    typingEffect("\033[0mThe air crackles with anticipation...", 0.07)
     typingEffect("Ancient prophecies whisper of monstrous evils returning to the land of Aralon.", 0.04)
     typingEffect("The kingdom holds its breath, their fate hanging by a thread.", 0.03)
 
