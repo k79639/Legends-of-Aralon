@@ -152,7 +152,7 @@ def orianaFinalDialogues():
     if Characters.heroHealth > 0:
         typingEffect(f"\n{Characters.oriana}You did it, hero! Zarok is defeated, and the kingdom is safe.")
         typingEffect("        Your bravery has brought light back to Aralon.\n", 0.03)
-        typingEffect("        \033[1mRest now, champion. Your legend will be told for generations.\033[0m")
+        typingEffect("        \033[1mRest now, champion. Your story will be told for generations.\033[0m")
     else:
         pass
 
